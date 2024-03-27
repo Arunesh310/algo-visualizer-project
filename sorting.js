@@ -125,3 +125,17 @@ stopSortingButton.addEventListener("click", function () {
   disableSizeSlider();
   hasPressedStop = true;
 });
+
+const resetButton = document.querySelector(".reset");
+resetButton.addEventListener("click", function () {
+  document.getElementById("size_input").value = 50;
+
+  document.getElementById("speed_input").value = 60;
+
+  document.getElementById("size_input").disabled = false;
+  document.querySelector(".new").disabled = false;
+
+  document.querySelector(".stop").disabled = true;
+
+  createNewArray();
+});
