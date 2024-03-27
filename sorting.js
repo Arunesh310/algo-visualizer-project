@@ -1,6 +1,4 @@
 function swap(el1, el2) {
-  console.log("In swap()");
-
   let temp = el1.style.height;
   el1.style.height = el2.style.height;
   el2.style.height = temp;
@@ -10,26 +8,30 @@ function disableSortingBtn() {
   document.querySelector(".bubbleSort").disabled = true;
   document.querySelector(".insertionSort").disabled = true;
   document.querySelector(".mergeSort").disabled = true;
-  document.querySelector(".quickSort1").disabled = true;
-  document.querySelector(".quickSort2").disabled = true;
+  document.querySelector(".quickSort").disabled = true;
   document.querySelector(".selectionSort").disabled = true;
-  document.querySelector(".combSort").disabled = true;
-  document.querySelector(".shellSort").disabled = true;
+  document.querySelector(".heapSort").disabled = true;
 }
 
 function enableSortingBtn() {
   document.querySelector(".bubbleSort").disabled = false;
   document.querySelector(".insertionSort").disabled = false;
   document.querySelector(".mergeSort").disabled = false;
-  document.querySelector(".quickSort1").disabled = false;
-  document.querySelector(".quickSort2").disabled = false;
+  document.querySelector(".quickSort").disabled = false;
   document.querySelector(".selectionSort").disabled = false;
-  document.querySelector(".combSort").disabled = false;
-  document.querySelector(".shellSort").disabled = false;
+  document.querySelector(".heapSort").disabled = false;
 }
 
 function disableSizeSlider() {
   document.querySelector("#size_input").disabled = true;
+}
+
+function disableSpeedSlider() {
+  document.querySelector("#speed_input").disabled = true;
+}
+
+function enableSpeedSlider() {
+  document.querySelector("#speed_input").disabled = false;
 }
 
 function enableSizeSlider() {
@@ -108,9 +110,18 @@ function deleteChild() {
 
 const newArrayButton = document.querySelector(".new");
 newArrayButton.addEventListener("click", function () {
+  hasPressedStop = false;
+  enableSpeedSlider();
   console.log("From newArray " + arraySize.value);
   console.log("From newArray " + delay);
   enableSortingBtn();
   enableSizeSlider();
   createNewArray(arraySize.value);
+});
+
+const stopSortingButton = document.querySelector(".stop");
+stopSortingButton.addEventListener("click", function () {
+  disableSortingBtn();
+  disableSizeSlider();
+  hasPressedStop = true;
 });
