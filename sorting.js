@@ -44,7 +44,15 @@ function enableNewArrayBtn() {
   document.querySelector(".new").disabled = false;
 }
 
-function waitforme(milisec) {
+function enableStopSortingBtn() {
+  document.querySelector(".stop").disabled = false;
+}
+
+function disableStopSortingBtn() {
+  document.querySelector(".stop").disabled = true;
+}
+
+function delayTime(milisec) {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve("");
