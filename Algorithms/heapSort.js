@@ -1,13 +1,13 @@
 async function heapSort(arr, n) {
   for (var i = n / 2 - 1; i >= 0; i--) {
-    if (flag == true) {
+    if (hasPressedStop == true) {
       return;
     }
-    heapify(arr, n, i);
+    await heapify(arr, n, i);
   }
 
   for (var i = n - 1; i > 0; i--) {
-    if (flag == true) {
+    if (hasPressedStop == true) {
       return;
     }
 
@@ -15,16 +15,16 @@ async function heapSort(arr, n) {
     arr[0] = arr[i];
     arr[i] = temp;
     arr[0].style.background = "cyan";
-    arr[i].style.background = "green";
+    arr[i].style.background = "goldenrod";
     swap(arr[0], arr[i]);
     await delayTime(delay);
 
-    heapify(arr, i, 0);
+    await heapify(arr, i, 0);
   }
 }
 
 async function heapify(arr, n, i) {
-  if (flag == true) {
+  if (hasPressedStop == true) {
     return;
   }
   var largest = i;
@@ -35,8 +35,6 @@ async function heapify(arr, n, i) {
     l < n &&
     parseInt(arr[l].style.height) > parseInt(arr[largest].style.height)
   ) {
-    arr[l].style.background = "lightblue";
-    arr[largest].style.background = "red";
     largest = l;
     swap(arr[largest], arr[l]);
   }
@@ -45,8 +43,6 @@ async function heapify(arr, n, i) {
     r < n &&
     parseInt(arr[r].style.height) > parseInt(arr[largest].style.height)
   ) {
-    arr[r].style.background = "lightgreen";
-    arr[largest].style.background = "red";
     largest = r;
     swap(arr[largest], arr[r]);
   }
@@ -66,14 +62,14 @@ heapSortbtn.addEventListener("click", async function () {
   let arr = document.querySelectorAll(".bar");
   let n = arr.length;
 
-  flag = false;
+  hasPressedStop = false;
   disableSortingBtn();
   disableSizeSlider();
   disableNewArrayBtn();
   enableStopSortingBtn();
   await heapSort(arr, n);
-  arr[0].style.background = "green";
-  if (flag == true) {
+  arr[0].style.background = "goldenrod";
+  if (hasPressedStop == true) {
     disableSpeedSlider();
   } else {
     enableSortingBtn();

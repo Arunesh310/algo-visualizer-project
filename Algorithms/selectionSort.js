@@ -1,14 +1,14 @@
 async function selection() {
   const ele = document.querySelectorAll(".bar");
   for (let i = 0; i < ele.length; i++) {
-    if (flag == true) {
+    if (hasPressedStop == true) {
       return;
     }
     let min_index = i;
 
     ele[i].style.background = "lightgreen";
     for (let j = i + 1; j < ele.length; j++) {
-      if (flag == true) {
+      if (hasPressedStop == true) {
         return;
       }
       console.log("In jth loop");
@@ -16,13 +16,12 @@ async function selection() {
       ele[j].style.background = "cyan";
 
       await delayTime(delay);
-      if (flag == true) {
+      if (hasPressedStop == true) {
         return;
       }
       if (
         parseInt(ele[j].style.height) < parseInt(ele[min_index].style.height)
       ) {
-        console.log("In if condition height comparision");
         if (min_index !== i) {
           ele[min_index].style.background = "#e43f5a";
         }
@@ -32,7 +31,7 @@ async function selection() {
       }
     }
     await delayTime(delay);
-    if (flag == true) {
+    if (hasPressedStop == true) {
       return;
     }
     swap(ele[min_index], ele[i]);
@@ -45,13 +44,13 @@ async function selection() {
 
 const selectionSortbtn = document.querySelector(".selectionSort");
 selectionSortbtn.addEventListener("click", async function () {
-  flag = false;
+  hasPressedStop = false;
   disableSortingBtn();
   disableSizeSlider();
   disableNewArrayBtn();
   enableStopSortingBtn();
   await selection();
-  if (flag == true) {
+  if (hasPressedStop == true) {
     disableSpeedSlider();
   } else {
     enableSortingBtn();
