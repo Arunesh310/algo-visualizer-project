@@ -13,6 +13,11 @@
   flex-direction: column;
 }
 
+.navbar-text a {
+  color: white;
+  text-decoration: none;
+}
+
 body {
   background-color: #03000a;
   font-family: "Courier New", monospace;
@@ -33,7 +38,7 @@ body {
   border: 1pt solid black;
   border-radius: 10px;
   width: 15px;
-  margin: 5px;
+
   transition: 0.1s all ease;
 }
 
